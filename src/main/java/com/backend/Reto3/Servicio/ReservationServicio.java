@@ -53,8 +53,8 @@ public class ReservationServicio implements Serializable {
         if (reservation.getIdReservation() == null) {
             return metodosCrud.save(reservation);
         } else {
-            Optional<Reservation> e = metodosCrud.getReservation(reservation.getIdReservation());
-            if (e.isEmpty()) {
+            Optional<Reservation> dateVerify = metodosCrud.getReservation(reservation.getIdReservation());
+            if (dateVerify.isEmpty()) {
                 return metodosCrud.save(reservation);
             } else {
                 return reservation;
@@ -70,20 +70,20 @@ public class ReservationServicio implements Serializable {
      */
     public Reservation update(Reservation reservation) {
         if (reservation.getIdReservation() != null) {
-            Optional<Reservation> e = metodosCrud.getReservation(reservation.getIdReservation());
-            if (!e.isEmpty()) {
+            Optional<Reservation> dateVerify = metodosCrud.getReservation(reservation.getIdReservation());
+            if (!dateVerify.isEmpty()) {
 
                 if (reservation.getStartDate() != null) {
-                    e.get().setStartDate(reservation.getStartDate());
+                    dateVerify.get().setStartDate(reservation.getStartDate());
                 }
                 if (reservation.getDevolutionDate() != null) {
-                    e.get().setDevolutionDate(reservation.getDevolutionDate());
+                    dateVerify.get().setDevolutionDate(reservation.getDevolutionDate());
                 }
                 if (reservation.getStatus() != null) {
-                    e.get().setStatus(reservation.getStatus());
+                    dateVerify.get().setStatus(reservation.getStatus());
                 }
-                metodosCrud.save(e.get());
-                return e.get();
+                metodosCrud.save(dateVerify.get());
+                return dateVerify.get();
             } else {
                 return reservation;
             }
@@ -96,14 +96,14 @@ public class ReservationServicio implements Serializable {
      * metodo para borrar un dato de la tabla Reservaciones por Id
      *
      * @param reservationId
-     * @return Borrar
+     * @return aBoolean
      */
     public boolean deleteReservation(int reservationId) {
-        Boolean Borrar = getReservation(reservationId).map(reservation -> {
+        Boolean aBoolean = getReservation(reservationId).map(reservation -> {
             metodosCrud.delete(reservation);
             return true;
         }).orElse(false);
-        return Borrar;
+        return aBoolean;   
     }
 
     //----------------------RETO5----------------------//

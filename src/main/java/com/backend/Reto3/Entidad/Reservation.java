@@ -99,4 +99,12 @@ public class Reservation implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
 }

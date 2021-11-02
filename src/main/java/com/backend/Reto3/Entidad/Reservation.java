@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -48,9 +47,7 @@ public class Reservation implements Serializable {
     private Client client;
     
     //SCORE// 
-    @OneToOne
-    @JsonIgnoreProperties("score")
-    private Score score;
+    private String score; 
     
     
     //METODOS GETTER Y SETTER
@@ -101,13 +98,5 @@ public class Reservation implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Score getScore() {
-        return score;
-    }
-
-    public void setScore(Score score) {
-        this.score = score;
     }
 }

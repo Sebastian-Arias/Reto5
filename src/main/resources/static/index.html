@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    
+    <style>
+    table, th, td {
+    border: 1px solid #11225a;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: Comic Sans MS;
+    font-style: italic;
+    align-items: center;
+    color: #0d193f;
+    }
+    </style>
+    
+</head>
+<body>
+
+<h1>HOLA MUNDO</h1>
+<div class="container unauthenticated">
+    With GitHub: <a href="/oauth2/authorization/github">click here</a>
+</div>
+<div class="container authenticated" style="display:none">
+    Logged in as: <span id="user"></span>
+
+    <h1>Registros</h1>
+    
+    <input type="text" id="Oname" placeholder="name">
+    <input type="text" id="Obrand" placeholder="brand">
+    <input type="number" id="Oyear" placeholder="year">
+    <input type="text" id="Odescription" placeholder="description">
+    
+    <button onclick="guardarInformacionOrtopedic()">Guardar Ortopedic</button>
+    <button onclick="traerInformacionOrtopedic()"> Consultar Ortopedic</button>
+    
+    <div id="resultadoOrtopedic"></div>
+</div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    $.get("/user", function (data) {
+        $("#user").html(data.name);
+        $(".unauthenticated").hide()
+        $(".authenticated").show()
+    });
+</script>
+
+</html>
